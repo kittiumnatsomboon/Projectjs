@@ -1,9 +1,8 @@
-
-export default function Navbar(){
-    return(
+import { Link, Outlet } from "react-router-dom";
+export default function Navbar() {
+    return (
         <>
-        Navbar
-                
+            
         </>
     )
 }
