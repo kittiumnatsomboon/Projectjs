@@ -1,0 +1,18 @@
+services:
+  db:
+    image: mysql:8.0 # Use a specific version, e.g., mysql:8.0, for consistency
+    restart: always
+    environment:
+      # Use strong passwords and secrets management in production, not hardcoded here
+      MYSQL_ROOT_PASSWORD: 123456 
+      MYSQL_DATABASE: db_save
+      MYSQL_USER: champ253918
+      MYSQL_PASSWORD: champ253918*C
+    ports:
+      - "3306:3306" # Maps port 3306 on your host to the container's port 3306
+    volumes:
+      # This ensures data persists even if the container is removed
+      - db_data:/var/lib/mysql 
+
+volumes:
+  db_data:
