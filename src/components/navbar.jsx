@@ -2,27 +2,10 @@ import { useState } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import { navlinks } from "../Data/navbarmenu";
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navlinks = [
-        {
-            href: "#creations",
-            text: "Creations",
-        },
-        {
-            href: "#about",
-            text: "About",
-        },
-        {
-            href: "#testimonials",
-            text: "Testimonials",
-        },
-        {
-            href: "#contact",
-            text: "Contact",
-        },
-    ];
+    
     return (
         <>
             <motion.nav className="sticky top-0 z-50 flex items-center justify-between w-full h-18 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur"
