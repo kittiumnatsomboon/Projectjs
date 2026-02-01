@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { navlinks } from "../Data/navbarmenu";
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,9 +14,9 @@ export default function Navbar() {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 250, damping: 70, mass: 1 }}
             >
-                <a href="#!">
+                <Link to="/">
                     <img className="h-9 w-auto" src="./assets/logo.svg" width={138} height={36} alt="logo" />
-                </a>
+                </Link>
 
                 <div className="hidden lg:flex items-center gap-8 transition duration-500">
                     {navlinks.map((link) => (
@@ -47,6 +47,9 @@ export default function Navbar() {
                 <button onClick={() => setIsMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-slate-100 hover:bg-slate-200 transition text-black rounded-md flex">
                     <XIcon />
                 </button>
+            </div>
+            <div>
+                <Outlet/>
             </div>
         </>
     );

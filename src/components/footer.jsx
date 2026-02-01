@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14">
                 <div className="sm:col-span-2 lg:col-span-1">
                     <a href="#!">
-                        <img className="h-9 w-auto" src="/agentix-react/assets/logo.svg" width={138} height={36} alt="logo" />
+                        <img className="h-9 w-auto" src="./assets/logo.svg" width={138} height={36} alt="logo" />
                     </a>
                     <p className="text-sm/7 mt-6">PrebuiltUI is a free and open-source UI component library with over 300+ beautifully crafted, customizable components built with Tailwind CSS.</p>
                 </div>
