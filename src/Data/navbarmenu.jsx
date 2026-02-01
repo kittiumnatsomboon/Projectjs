@@ -4,7 +4,7 @@ export const navlinks = [
         text: "หน้าแรก",
     },
     {
-        href: "#about",
+        href: "/about",
         text: "About",
     },
     {
