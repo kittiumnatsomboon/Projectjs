@@ -32,7 +32,7 @@ export default function Navbar() {
                 transition={{ type: "spring", stiffness: 250, damping: 70, mass: 1 }}
             >
                 <a href="#!">
-                    <img className="h-9 w-auto" src="/agentix-react/assets/logo.svg" width={138} height={36} alt="logo" />
+                    <img className="h-9 w-auto" src="./assets/logo.svg" width={138} height={36} alt="logo" />
                 </a>
 
                 <div className="hidden lg:flex items-center gap-8 transition duration-500">
