@@ -4,6 +4,10 @@ export const navlinks = [
         text: "หน้าแรก",
     },
     {
+        href: "/quilljs",
+        text: "quilljs",
+    },
+    {
         href: "/about",
         text: "About",
     },

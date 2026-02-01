@@ -7,6 +7,7 @@ import Navbar from "./components/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import  Home  from './pages/Home';
 import About from './pages/Aboute';
+import Quill from './pages/Quill';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
+            <Route path='/Quilljs' element={<Quill/>}/>
            </Route>
         </Routes>
         <Footer />
