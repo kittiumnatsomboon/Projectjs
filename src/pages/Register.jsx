@@ -71,6 +71,7 @@ export default function Register() {
                                     const res = await axios("http://localhost:5000/Register/",
                                         JSON.stringify(values)
                                     );
+                                    // test api register
                                     console.log(res)
                                 }}
                             >
