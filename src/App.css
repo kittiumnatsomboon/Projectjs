@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 @import "tailwindcss";
 @theme {
     --font-poppins: "Poppins", sans-serif;
@@ -5,8 +6,11 @@
 
 body {
     @apply bg-black text-white text-sm font-poppins antialiased;
+    font-family: "Google Sans", sans-serif;
 }
-
+*{
+    font-family: "Google Sans", sans-serif;
+}
 button {
     @apply cursor-pointer;
 }

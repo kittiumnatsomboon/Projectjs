@@ -15,4 +15,5 @@ export const navlinks = [
         href: "/other",
         text: "อื่นๆ",
     },
+    
 ];

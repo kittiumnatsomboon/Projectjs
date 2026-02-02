@@ -21,8 +21,8 @@ function App() {
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
-            <Route path='/contact' element={<Login/>}/>
-            <Route path='/other' element={<Register/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
            </Route>
         </Routes>
         <Footer />

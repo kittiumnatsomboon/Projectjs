@@ -28,10 +28,10 @@ export default function Navbar() {
 
                 <div className="hidden lg:block space-x-3">
                     <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                        เข้าสู่ระบบ
+                       <Link to="/login">เข้าสู่ระบบ</Link> 
                     </button>
                     <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                        สมัครสมาชิก
+                        <Link to="/register">สมัครสมาชิก</Link>
                     </button>
                 </div>
                 <button onClick={() => setIsMenuOpen(true)} className="lg:hidden active:scale-90 transition">
