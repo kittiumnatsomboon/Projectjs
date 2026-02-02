@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import * as Yup from 'yup';
 import { Formik, Field, ErrorMessage, Form } from "formik";
-
+import axios from "axios";
 
 // ตรวจสอบฟอร์มสมัครสมาชิก
 const SignupSchema = Yup.object().shape({
@@ -66,8 +66,12 @@ export default function Register() {
                                     terms:false
                                 }}
                                 validationSchema={SignupSchema}
-                                onSubmit={(values, { setSubmitting }) => {
-                                    alert(JSON.stringify(values, null, 2));
+                                onSubmit={async(values, { setSubmitting }) => {
+                                    // alert(JSON.stringify(values, null, 2));
+                                    const res = await axios("http://localhost:5000/Register/",
+                                        JSON.stringify(values)
+                                    );
+                                    console.log(res)
                                 }}
                             >
                                 {({ isSubmitting }) => (
