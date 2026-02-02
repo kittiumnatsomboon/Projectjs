@@ -7,6 +7,8 @@ import Navbar from "./components/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import  Home  from './pages/Home';
 import About from './pages/Aboute';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
            </Route>
         </Routes>
         <Footer />

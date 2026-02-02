@@ -5,14 +5,15 @@ export const navlinks = [
     },
     {
         href: "/about",
-        text: "About",
+        text: "เกี่ยวกับเรา",
     },
     {
-        href: "#testimonials",
-        text: "Testimonials",
+        href: "/contact",
+        text: "ติดต่อเรา",
     },
     {
-        href: "#contact",
-        text: "Contact",
+        href: "/other",
+        text: "อื่นๆ",
     },
+    
 ];
