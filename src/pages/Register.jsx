@@ -93,9 +93,7 @@ export default function Register() {
                                                 },
                                             }
                                         );
-                                        
-                                        
-                                        console.log(res.data);
+                                        setmessage(res.data.message)                                        
                                     } catch (error) {
                                         console.error(error);
                                     }
@@ -178,6 +176,8 @@ export default function Register() {
                                         </div>
                                         <button type="submit" className="w-full text-white border border-slate-400 rounded-md font-medium rounded-lg text-sm px-5 py-2.5 text-center 
                                         dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">สมัครสมาชิก</button>
+                                        {message && <div className="text-green-500">{message}</div>}
+
                                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                             คุณมีบัญชีแล้วหรือ? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">เข้าสู่ระบบ</Link>
                                         </p>

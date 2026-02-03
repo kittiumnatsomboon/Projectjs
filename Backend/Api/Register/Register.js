@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
         await pool.query( "INSERT INTO users (firstname, lastname, telephone, email, `password`) VALUES (?, ?, ?, ?, ?)",
             [firstname,lastname,phone,email,hashpassword]
         )
-        return res.status(200).json({message:"register successs"}) 
+        return res.status(200).json({message:"สมัครสำเร็จ"}) 
 
     }catch(error){
         res.json({message:`Error connectiondatabase ${error}`})
