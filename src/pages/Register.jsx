@@ -82,17 +82,25 @@ export default function Register() {
                                     terms: false
                                 }}
                                 validationSchema={SignupSchema}
-                                onSubmit={async (values, { setSubmitting }) => {
-                                    // alert(JSON.stringify(values, null, 2));
-                                    // const res = await axios("http://localhost:5000/Register/",
-                                    //     JSON.stringify(values)
-                                    // );
-                                    // // test api register
-                                    // console.log(res)
-                                    alert(JSON.stringify(values))
+                                onSubmit={async (values) => {
+                                    try {
+                                        const res = await axios.post(
+                                            "http://localhost:5000/Register/",
+                                            values,
+                                            {
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                },
+                                            }
+                                        );
+
+                                        console.log(res.data);
+                                    } catch (error) {
+                                        console.error(error);
+                                    }
                                 }}
                             >
-                                {({ isSubmitting, values, setFieldValue }) => (
+                                {({ values, setFieldValue }) => (
 
                                     <Form className="space-y-4 md:space-y-6">
                                         <div>

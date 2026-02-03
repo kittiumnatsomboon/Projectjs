@@ -8,9 +8,11 @@ require('dotenv').config();
 // อนุญาติให้อ่านข้อมูล Json
 app.use(express.json());
 // อนุญาติพอร์ต
-app.use(cors(
-  {origin: "http://localhost:5173/"}
-))
+app.use(cors({
+  origin: "http://localhost:5173", // frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
 // API register
 app.use('/Register',require('./Api/Register/Register'))
