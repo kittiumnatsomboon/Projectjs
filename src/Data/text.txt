@@ -1,0 +1,9 @@
+-------------------deploy-frontend-----------------------------
+Reactjs : Deploy : Vercel <- free
+storage : เป็น firebase storage <- free 5GB
+---------deploy-backend--------z.com---------------------------
+Express : Deploy : z.com <- 1-2 พัน
+Mysql : Z.com
+
+================Name=domain=======================================
+FitHappens.com => Domain
