@@ -2,7 +2,11 @@ import { Link } from "react-router";
 import * as Yup from 'yup';
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import axios from "axios";
-
+import { useState } from "react";
+import 'react-phone-number-input/style.css'
+import { isValidPhoneNumber } from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 // ตรวจสอบฟอร์มสมัครสมาชิก
 const SignupSchema = Yup.object().shape({
     firstname: Yup.string()
@@ -33,6 +37,13 @@ const SignupSchema = Yup.object().shape({
         .matches(/\d+/, 'กรุณาระบุข้อมูลตัวเลขอย่างน้อย 1 ตัวอักษร')
         .matches(/[@$!%*#?&]+/, 'กรุณาระบุข้อมูลอักษรพิเศษอย่างน้อย 1 ตัวอักษร')
         .oneOf([Yup.ref('password'), null], 'รหัสผ่านต้องตรงกัน'),
+    phone: Yup.string()
+        .required("กรุณากรอกเบอร์โทรศัพท์")
+        .test(
+            "is-valid-phone",
+            "เบอร์โทรศัพท์ไม่ถูกต้อง",
+            (value) => value && isValidPhoneNumber(value)
+        ),
     terms: Yup
         .bool()
         .oneOf([true], 'กรุณาระบุยืนยันฟิลนี้'), // Ensures the value is true
@@ -42,6 +53,10 @@ const SignupSchema = Yup.object().shape({
 
 
 export default function Register() {
+    const [message, setmessage] = useState();
+
+    const [error, seterror] = useState();
+
     return (
         <>
             <section className="">
@@ -63,19 +78,21 @@ export default function Register() {
                                     email: "",
                                     password: "",
                                     confirmpassword: "",
-                                    terms:false
+                                    phone: "",
+                                    terms: false
                                 }}
                                 validationSchema={SignupSchema}
-                                onSubmit={async(values, { setSubmitting }) => {
+                                onSubmit={async (values, { setSubmitting }) => {
                                     // alert(JSON.stringify(values, null, 2));
-                                    const res = await axios("http://localhost:5000/Register/",
-                                        JSON.stringify(values)
-                                    );
-                                    // test api register
-                                    console.log(res)
+                                    // const res = await axios("http://localhost:5000/Register/",
+                                    //     JSON.stringify(values)
+                                    // );
+                                    // // test api register
+                                    // console.log(res)
+                                    alert(JSON.stringify(values))
                                 }}
                             >
-                                {({ isSubmitting }) => (
+                                {({ isSubmitting, values, setFieldValue }) => (
 
                                     <Form className="space-y-4 md:space-y-6">
                                         <div>
@@ -95,6 +112,21 @@ export default function Register() {
                                             dark:border-gray-600 dark:placeholder-gray-400 
                                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="กรุณาระบุนามสกุล" required="" />
                                             <ErrorMessage name="lastname" component="div" className="text-red-500" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">นามสกุล</label>
+                                            <PhoneInput
+                                                international
+                                                defaultCountry="TH"
+                                                placeholder="Enter phone number"
+                                                value={values.phone}
+                                                onChange={(value) => setFieldValue("phone", value)}
+                                                name="phone"
+                                                className="bg-gray-50 text-black text-sm rounded-lg block w-full p-2.5"
+                                            />
+                                            <p className="text-red-500 text-sm mt-1">
+                                                <ErrorMessage name="phone" />
+                                            </p>
                                         </div>
                                         <div>
                                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
@@ -130,7 +162,7 @@ export default function Register() {
                                             <div className="flex items-center h-5">
                                                 <Field id="terms" name="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
                                             </div>
-                                                <ErrorMessage name="terms" component="div" className="text-red-500"/>
+                                            <ErrorMessage name="terms" component="div" className="text-red-500" />
                                             <div className="ml-3 text-sm">
                                                 <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                                             </div>
