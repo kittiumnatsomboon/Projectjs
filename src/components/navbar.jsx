@@ -34,8 +34,8 @@ export default function Navbar() {
                             <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
                                 <Link to="/">{user.firstname + " " + user.lastname}</Link>
                             </button>
-                            <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                                <Link to={logout}>ออกจากระบบ</Link>
+                            <button onClick={logout} className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
+                                ออกจากระบบ
                             </button>
                         </div> :
 
@@ -55,22 +55,24 @@ export default function Navbar() {
                 </button>
             </motion.nav>
             <div className={`fixed inset-0 z-[100] bg-black/60 backdrop-blur flex flex-col items-center justify-center text-lg gap-8 lg:hidden transition-transform duration-400 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+                {/* เมนูแสดงบนMobile */}
                 {navlinks.map((link) => (
                     <Link key={link.href} to={link.href} onClick={() => setIsMenuOpen(false)}>
                         {link.text}
                     </Link>
                 ))}
                 {user ?
-                    <div>
+                    // Flex จัดลำดับการแสดงของ menu mobile เงื่อนไขจริง
+                    <div className="flex flex-col items-center justify-center">
                         <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
                             <Link to="/">{user.firstname + user.lastname}</Link>
                         </button>
-                        <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
-                            <Link to={logout}>ออกจากระบบ</Link>
+                        <button onClick={logout} className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
+                            ออกจากระบบ
                         </button>
                     </div> :
-
-                    <div>
+                    // Flex จัดลำดับการแสดงของ menu mobile เงื่อนไขเท็จแสดงเมนูสมัครและเข้าสู่ระบบ
+                    <div className="flex flex-col items-center justify-center">
                         <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
                             <Link to="/login">เข้าสู่ระบบ</Link>
                         </button>
