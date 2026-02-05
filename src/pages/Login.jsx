@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Functionlogin } from "../Data/Furture/Functionlogin";
+import { Functionlogin } from "../Data/function/Functionlogin";
 import { useState } from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from 'yup';
@@ -21,6 +21,7 @@ const SignupSchema = Yup.object().shape({
 
 export default function Login() {
     const loginfunction = new Functionlogin();
+    const[message , setmessage] = useState();
     return (
         <>
             <section className="bg-gray-50 dark:bg-gray-900">
@@ -41,7 +42,8 @@ export default function Login() {
                                 }}
                                 validationSchema={SignupSchema}
                                 onSubmit={async (values) => {
-                                    loginfunction.login(values)
+                                    const res = await loginfunction.login(values)
+                                    setmessage(res.data.message)
                                 }}
                             >
                                 <Form className="space-y-4 md:space-y-6" action="#">
@@ -70,6 +72,7 @@ export default function Login() {
                                     </div>
                                     <button type="submit" className="w-full text-white border border-slate-400 rounded-md font-medium rounded-lg text-sm px-5 py-2.5 text-center 
                                         dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">เข้าสู่ระบบ</button>
+                                    <p className="text-green-500">{message}</p>
                                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                         ยังไม่มีบัญชีหรือเปล่า? <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">สมัครสมาชิก</Link>
                                     </p>
