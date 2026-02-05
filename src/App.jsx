@@ -9,11 +9,12 @@ import  Home  from './pages/Home';
 import About from './pages/Aboute';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
+import { AuthProvider } from './Auth/Auth';
 function App() {
   return (
     <>
       {/* router */}
+      <AuthProvider>
       <BrowserRouter>
         <LenisScroll />
         <Routes>
@@ -27,6 +28,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }
