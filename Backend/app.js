@@ -16,6 +16,7 @@ app.use(cors({
 
 // API register
 app.use('/Register',require('./Api/Register/Register'))
+app.use('/login',require('./Api/Login/Login'))
 app.use('/db',require('./Api/User'))
 // app router index
 app.get('/', (req, res) => {
