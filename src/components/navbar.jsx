@@ -3,9 +3,11 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link, Outlet } from "react-router-dom";
 import { navlinks } from "../Data/navbarmenu";
+import { useAuth } from "../Auth/Auth";
+import Footer from "./footer"
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const { user, logout } = useAuth();
     return (
         <>
             <motion.nav className="sticky top-0 z-50 flex items-center justify-between w-full h-18 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur"
@@ -27,12 +29,26 @@ export default function Navbar() {
                 </div>
 
                 <div className="hidden lg:block space-x-3">
-                    <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                        <Link to="/login">เข้าสู่ระบบ</Link>
-                    </button>
-                    <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                        <Link to="/register">สมัครสมาชิก</Link>
-                    </button>
+                    {user ?
+                        <div className="hidden lg:block space-x-3">
+                            <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
+                                <Link to="/">{user.firstname + " " + user.lastname}</Link>
+                            </button>
+                            <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
+                                <Link to={logout}>ออกจากระบบ</Link>
+                            </button>
+                        </div> :
+
+                        <>
+                            <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
+                                <Link to="/login">เข้าสู่ระบบ</Link>
+                            </button>
+                            <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
+                                <Link to="/register">สมัครสมาชิก</Link>
+                            </button>
+
+                        </>
+                    }
                 </div>
                 <button onClick={() => setIsMenuOpen(true)} className="lg:hidden active:scale-90 transition">
                     <MenuIcon className="size-6.5" />
@@ -44,18 +60,32 @@ export default function Navbar() {
                         {link.text}
                     </Link>
                 ))}
-                <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
-                    <Link to="/login">เข้าสู่ระบบ</Link>
-                </button>
-                <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
-                    <Link to="/register">สมัครสมาชิก</Link>
-                </button>
+                {user ?
+                    <div>
+                        <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
+                            <Link to="/">{user.firstname + user.lastname}</Link>
+                        </button>
+                        <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
+                            <Link to={logout}>ออกจากระบบ</Link>
+                        </button>
+                    </div> :
+
+                    <div>
+                        <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
+                            <Link to="/login">เข้าสู่ระบบ</Link>
+                        </button>
+                        <button className="hover:bg-slate-300/20 transition px-6 py-2 active:scale-95">
+                            <Link to="/register">สมัครสมาชิก</Link>
+                        </button>
+                    </div>
+                }
                 <button onClick={() => setIsMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-slate-100 hover:bg-slate-200 transition text-black rounded-md flex">
                     <XIcon />
                 </button>
             </div>
             <div>
                 <Outlet />
+                <Footer/>
             </div>
         </>
     );

@@ -1,36 +1,65 @@
 // src/context/AuthContext.js
-import React, { createContext, useContext, useState } from 'react';
-
-// Create the context object with a default value (optional)
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router";
 const AuthContext = createContext(null);
 
-// Create a custom hook to use the auth context easily in components
+
 export function useAuth() {
-  return useContext(AuthContext);
+    return useContext(AuthContext);
 }
 
-// Create the Provider component
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null); // State to hold user info or null
-  const[token , settoken] = useState()
+    const [token, setToken] = useState(null);
+    const [user, setUser] = useState(null);
 
-  const login = (token) => {
-    // In a real app, this would involve API calls for authentication
-    settoken(localStorage.setItem("token",token))
-  };
+    const navigate = useNavigate();
+    // โหลด token ตอน refresh หน้า
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
 
-  const logout = () => {
-    setToken(null);
-    localStorage.removeItem("token");
-  };
+        if (!storedToken) return;
 
-  // The value provided to the children components
-  const value = {
-    token,
-    user,
-    login,
-    logout,
-  };
+        try {
+            const decoded = jwtDecode(storedToken);
+            const currentTime = Date.now() / 1000;
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+            if (decoded.exp < currentTime) {
+                logout();
+            } else {
+                setToken(storedToken);
+                setUser(decoded);
+            }
+        } catch (err) {
+            logout();
+        }
+    }, []);
+
+    const login = (token) => {
+        const decoded = jwtDecode(token);
+        localStorage.setItem("token", token);
+        setToken(token);
+        setUser(decoded);
+    };
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        setToken(null);
+        setUser(null);
+        navigate("/login")
+    };
+
+    return (
+        <AuthContext.Provider
+            value={{
+                token,
+                user,
+                isAuthenticated: !!token,
+                login,
+                logout,
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
 }
