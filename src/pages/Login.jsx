@@ -3,7 +3,7 @@ import { Functionlogin } from "../Data/function/Functionlogin";
 import { useState } from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from 'yup';
-
+import { useAuth } from "../Auth/Auth";
 const SignupSchema = Yup.object().shape({
     email: Yup.string()
         .email('รูปแบบอีเมลล์ไม่ถูกต้อง')
@@ -23,6 +23,7 @@ export default function Login() {
     const loginfunction = new Functionlogin();
     const[message , setmessage] = useState();
     const navigate = useNavigate();
+    const{login,logout} = useAuth();
     return (
         <>
             <section className="bg-gray-50 dark:bg-gray-900">
@@ -44,6 +45,7 @@ export default function Login() {
                                 validationSchema={SignupSchema}
                                 onSubmit={async (values) => {
                                     const res = await loginfunction.login(values)
+                                    login(res.data.token)
                                     setmessage(res.data.message)
                                     navigate("/")
                                 }}
