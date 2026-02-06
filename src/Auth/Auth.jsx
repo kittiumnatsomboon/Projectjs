@@ -1,7 +1,7 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext(null);
 
 
@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("token");
         setToken(null);
         setUser(null);
-        navigate("/login")
+        navigate("/login");
     };
 
     return (
