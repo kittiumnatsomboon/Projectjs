@@ -5,9 +5,15 @@ import { Link, Outlet } from "react-router-dom";
 import { navlinks } from "../Data/navbarmenu";
 import { useAuth } from "../Auth/Auth";
 import Footer from "./footer"
+import Dropdownmenu from "./dropdown";
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, logout } = useAuth();
+    // open dropdownmenu user login
+    const [usermenu, setusermenu] = useState(false);
+    const toggleusermenu = () => {
+        setusermenu(!usermenu)
+    }
     return (
         <>
             <motion.nav className="sticky top-0 z-50 flex items-center justify-between w-full h-18 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur"
@@ -30,13 +36,22 @@ export default function Navbar() {
 
                 <div className="hidden lg:block space-x-3">
                     {user ?
+
                         <div className="hidden lg:block space-x-3">
-                            <button className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                                <Link to="/">{user.firstname + " " + user.lastname}</Link>
-                            </button>
-                            <button onClick={logout} className="hover:bg-slate-300/20 transition px-6 py-2 border border-slate-400 rounded-md active:scale-95">
-                                ออกจากระบบ
-                            </button>
+                            <div className="relative">
+                                <button
+                                    onClick={toggleusermenu}
+                                    className="hover:bg-slate-300/20 transition px-6 py-2  rounded-md active:scale-95">
+                                    <Link to="/">{user.firstname + " " + user.lastname}</Link>
+                                </button>
+                                {usermenu && (
+                                    <>
+                                        <Dropdownmenu />
+                                    </>
+                                )}
+                                
+
+                            </div>
                         </div> :
 
                         <>
@@ -87,7 +102,7 @@ export default function Navbar() {
             </div>
             <div>
                 <Outlet />
-                <Footer/>
+                <Footer />
             </div>
         </>
     );
