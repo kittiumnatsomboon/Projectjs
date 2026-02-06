@@ -9,6 +9,7 @@ import About from './pages/Aboute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { AuthProvider } from './Auth/Auth';
+import NotFound from './pages/NotFoundforpage';
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path="*" element={<NotFound />} /> 
             </Route>
           </Routes>
         </AuthProvider>
