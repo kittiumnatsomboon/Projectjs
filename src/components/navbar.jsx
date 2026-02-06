@@ -43,14 +43,10 @@ export default function Navbar() {
                                     onClick={toggleusermenu}
                                     className="hover:bg-slate-300/20 transition px-6 py-2  rounded-md active:scale-95">
                                     <Link to="/">{user.firstname + " " + user.lastname}</Link>
-                                    <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
                                 </button>
                                 {usermenu && (
                                     <>
                                         <Dropdownmenu />
-                                        
                                     </>
                                 )}
                                 
