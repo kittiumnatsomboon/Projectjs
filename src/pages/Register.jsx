@@ -129,6 +129,7 @@ export default function Register() {
                                                 value={values.phone}
                                                 onChange={(value) => setFieldValue("phone", value)}
                                                 name="phone"
+                                                id="phone"
                                                 className="bg-gray-50 text-black text-sm rounded-lg block w-full p-2.5"
                                             />
                                             <p className="text-red-500 text-sm mt-1">
