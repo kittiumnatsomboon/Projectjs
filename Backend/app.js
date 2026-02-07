@@ -18,6 +18,8 @@ app.use(cors({
 app.use('/Register',require('./Api/Register/Register'))
 app.use('/login',require('./Api/Login/Login'))
 app.use('/db',require('./Api/User'))
+app.use('/awsquery',require('./Api/AWS/testquery'));
+
 // app router index
 app.get('/', (req, res) => {
   res.send('Hello World!')
