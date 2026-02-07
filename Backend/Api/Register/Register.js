@@ -4,6 +4,8 @@ const router = express.Router();
 const pool = require('../Database');
 const bcrypt = require('bcrypt');
 
+
+
 router.post('/', async (req, res) => {
     const {firstname,lastname,phone,email, password,} = req.body;
     try{
@@ -13,7 +15,7 @@ router.post('/', async (req, res) => {
         }
         const saltRounds = 12;
         const hashpassword = await bcrypt.hash(password,saltRounds)
-        await pool.query( "INSERT INTO users (firstname, lastname, telephone, email, `password`) VALUES (?, ?, ?, ?, ?)",
+        await pool.query( "INSERT INTO users (firstname, lastname, telephone, email, password) VALUES (?, ?, ?, ?, ?)",
             [firstname,lastname,phone,email,hashpassword]
         )
         return res.status(200).json({message:"สมัครสำเร็จ"}) 
