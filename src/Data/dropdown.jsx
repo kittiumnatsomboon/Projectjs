@@ -1,7 +1,7 @@
 export const dropdownmenu = [
     {
         id:1,
-        href: "/account",
+        href: "/profile",
         text: "บัญชีผู้ใช้งาน",
     },
     {

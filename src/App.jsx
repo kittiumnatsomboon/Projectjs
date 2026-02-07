@@ -10,6 +10,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { AuthProvider } from './Auth/Auth';
 import NotFound from './pages/NotFoundforpage';
+import Profile from './pages/Profile';
+
 function App() {
   return (
     <>
@@ -24,6 +26,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/profile' element={<Profile />} />
               <Route path="*" element={<NotFound />} /> 
             </Route>
           </Routes>
